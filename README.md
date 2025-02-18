@@ -117,8 +117,43 @@ fi
 
 #### Bun
 
+```bash
+curl -fsSL https://bun.sh/install | bash
+```
+
 #### i3
 
 #### Bash
 
 #### Useful scripts and aliases
+
+```bash
+# Copy command output to clipboard
+alias cs='xclip -selection clipboard'
+
+# Paste clipboard content
+alias vs='xclip -o -selection clipboard'
+
+# Bluetoothctl aliases
+alias bl='bluetoothctl connect <MAC_ADDRESS>'
+alias bd='bluetoothctl disconnect <MAC_ADDRESS>'
+alias bp='bluetoothctl pair <MAC_ADDRESS>'
+```
+
+##### Fix problematic Bluetooth connection on Linux
+
+This script resets the Bluetooth service, removes a previously paired device, and then scans, pairs, trusts, and connects to the specified device. Replace <MAC_ADDRESS> with your device's MAC address. Execute script one line at a time to ensure that scan is successful before pairing.
+
+```bash
+MAC_ADDRESS="<MAC_ADDRESS>"
+
+bluetoothctl remove "${MAC_ADDRESS}"
+bluetoothctl power off
+bluetoothctl power on
+
+bluetoothctl scan on
+
+bluetoothctl pair "${MAC_ADDRESS}"
+bluetoothctl trust "${MAC_ADDRESS}"
+bluetoothctl connect "${MAC_ADDRESS}"
+```
