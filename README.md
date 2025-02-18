@@ -79,6 +79,42 @@ EOF
 
 #### Git
 
+Git with GPG commit verification.
+
+```bash
+# Set up Git user details
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+
+# Optionally store HTTPS credentials
+git config --global credential.helper store
+
+## GPG Commit Verification
+
+# Generate a GPG key (install GPG: https://gnupg.org/download/)
+gpg --full-generate-key
+
+# List GPG keys (LONG format)
+gpg --list-secret-keys --keyid-format LONG
+
+# Export your public key (<GPG_KEY_ID>)
+gpg --armor --export <GPG_KEY_ID>
+# Add it to GitHub: https://github.com/settings/keys
+
+# Set Git to sign commits/tags with your GPG key
+git config --global user.signingkey <GPG_KEY_ID>
+git config --global gpg.program gpg
+
+# Enable signing by default
+git config --global commit.gpgsign true
+git config --global tag.gpgSign true
+
+# Add gpg tty to bashrc
+if [ -f ~/.bashrc ]; then
+    echo -e '\nexport GPG_TTY=$(tty)' >> ~/.bashrc
+fi
+```
+
 #### Bun
 
 #### i3
