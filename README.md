@@ -1,4 +1,17 @@
-All of my config files and notes for setting up a new machine.
+All config files and notes for setting up a new machine. Scripts are for debian-based systems and might need tweaks on other distros. Use at your own risk. Config files are as directories in this repo. Scripts are in this README.
+
+### Table of Contents
+
+- [Go](#go)
+- [Fnm for Node.js](#fnm-for-nodejs)
+- [Docker](#docker)
+- [Git](#git)
+- [Bun](#bun)
+- [i3](#i3)
+- [Bash](#bash)
+- [Useful scripts and aliases](#useful-scripts-and-aliases)
+
+### Scripts
 
 #### Go
 
@@ -40,6 +53,29 @@ source ~/.bashrc
 ```
 
 #### Fnm for Node.js
+
+Node version manager. [Github](https://github.com/Schniz/fnm)
+
+```bash
+#!/bin/bash
+FNM_PATH="${HOME}/.local/share/fnm"
+
+curl -fsSL https://fnm.vercel.app/install | bash
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env)"
+fi
+
+cat << 'EOF' >> ~/.bashrc
+
+# fnm
+FNM_PATH="${HOME}/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env)"
+fi
+EOF
+```
 
 #### Docker
 
