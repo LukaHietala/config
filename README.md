@@ -2,7 +2,7 @@ All of my config files and notes for setting up a new machine.
 
 #### Go
 
-Notes on installing Go. Requires sudo access. Downloads specified version of Go, extracts it, checks the SHA256 checksum, changes the owner of the extracted directory to root, and moves it to `/usr/local/go`. Also adds the Go binary to the PATH in the user's `.bashrc` file and sources it.
+Requires sudo access. Downloads specified version of Go, extracts it, checks the SHA256 checksum, changes the owner of the extracted directory to root, and moves it to `/usr/local/go`. Also adds the Go binary to the PATH in the user's `.bashrc` file and sources it.
 
 ```bash
 #!/bin/bash
