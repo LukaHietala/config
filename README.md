@@ -1,7 +1,5 @@
 All config files and notes for setting up a new machine. Scripts are for debian-based systems and might need tweaks on other distros. Use at your own risk. Config files are as directories in this repo. Scripts are in this README.
 
-### Table of Contents
-
 - [Go](#go)
 - [Fnm for Node.js](#fnm-for-nodejs)
 - [Docker](#docker)
