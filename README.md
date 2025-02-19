@@ -1,5 +1,12 @@
 All config files and notes for setting up a new machine. Scripts are for debian-based systems and might need tweaks on other distros. Use at your own risk. Config files are as directories in this repo. Scripts are in this README.
 
+I like to keep all bin files in `~/.local/bin` and config files in `~/.config`. So I'll be using mainly these paths in the scripts. Add the following to your `.bashrc` to add the bin directory to the PATH.
+
+```bash
+echo 'export PATH=~/.local/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+```
+
 - [Go](#go)
 - [Fnm for Node.js](#fnm-for-nodejs)
 - [Docker](#docker)
@@ -13,6 +20,9 @@ All config files and notes for setting up a new machine. Scripts are for debian-
 - [i3](#i3)
 - [Bash](#bash)
 - [Useful scripts and aliases](#useful-scripts-and-aliases)
+- [LSP Servers](#lsp-servers)
+  - [lua_ls](#lua)
+  - [gopls](#go)
 
 ### Scripts
 
@@ -226,7 +236,7 @@ bluetoothctl connect "${MAC_ADDRESS}"
 
 Lsp servers mainly for Neovim.
 
-#### Lua
+#### Lua (lua_ls)
 
 ```bash
 apt-get install ninja-build
@@ -250,4 +260,13 @@ dependencies = {
 		},
 	},
 },
+```
+
+#### Go (gopls)
+
+https://pkg.go.dev/golang.org/x/tools/gopls#section-readme
+
+```bash
+go install golang.org/x/tools/gopls@latest
+ln -s $(which gopls) ~/.local/bin/gopls
 ```
