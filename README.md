@@ -98,6 +98,18 @@ curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_
 sudo dpkg -i ripgrep_14.1.0-1_amd64.deb
 ```
 
+#### Fd (fd-find)
+
+```bash
+# create a dir for the binary in ~/.local/bin if it doesn't exist
+mkdir -p ~/.local/bin
+# add the binary to the PATH
+echo 'export PATH=~/.local/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+sudo apt-get install fd-find
+ln -s $(which fdfind) ~/.local/bin/fd
+```
+
 #### Git
 
 Git with GPG commit verification.
