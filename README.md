@@ -4,6 +4,8 @@ All config files and notes for setting up a new machine. Scripts are for debian-
 - [Fnm for Node.js](#fnm-for-nodejs)
 - [Docker](#docker)
 - [Neovim](#neovim)
+- [Cargo](#cargo)
+- [Alacritty](#alacritty)
 - [Ripgrep (rg)](#ripgrep-rg)
 - [Fd (fd-find)](#fd-fd-find)
 - [Git](#git)
@@ -16,7 +18,7 @@ All config files and notes for setting up a new machine. Scripts are for debian-
 
 #### Go
 
-Requires sudo access. Downloads specified version of Go, extracts it, checks the SHA256 checksum, changes the owner of the extracted directory to root, and moves it to `/usr/local/go`. Also adds the Go binary to the PATH in the user's `.bashrc` file and sources it.
+Downloads specified version of Go, extracts it, checks the SHA256 checksum, changes the owner of the extracted directory to root, and moves it to `/usr/local/go`. Also adds the Go binary to the PATH in the user's `.bashrc` file and sources it.
 
 ```bash
 #!/bin/bash
@@ -204,13 +206,9 @@ alias vs='xclip -o -selection clipboard'
 alias bl='bluetoothctl connect <MAC_ADDRESS>'
 alias bd='bluetoothctl disconnect <MAC_ADDRESS>'
 alias bp='bluetoothctl pair <MAC_ADDRESS>'
-```
 
-##### Fix problematic Bluetooth connection on Linux
+# Bluetoothctl for bad connections
 
-This script resets the Bluetooth service, removes a previously paired device, and then scans, pairs, trusts, and connects to the specified device. Replace <MAC_ADDRESS> with your device's MAC address. Execute script one line at a time to ensure that scan is successful before pairing.
-
-```bash
 MAC_ADDRESS="<MAC_ADDRESS>"
 
 bluetoothctl remove "${MAC_ADDRESS}"
@@ -222,4 +220,34 @@ bluetoothctl scan on
 bluetoothctl pair "${MAC_ADDRESS}"
 bluetoothctl trust "${MAC_ADDRESS}"
 bluetoothctl connect "${MAC_ADDRESS}"
+```
+
+### LSP Servers
+
+Lsp servers mainly for Neovim.
+
+#### Lua
+
+```bash
+apt-get install ninja-build
+git clone https://github.com/LuaLS/lua-language-server
+cd lua-language-server
+./make.sh
+ln -s bin/lua-language-server ~/.local/bin/lua-language-server
+```
+
+Vim globals for `lua-language-server`
+
+```lua
+dependencies = {
+	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+		  library = {
+		    { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+		  },
+		},
+	},
+},
 ```
