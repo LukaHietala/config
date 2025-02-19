@@ -77,6 +77,20 @@ EOF
 
 #### Docker
 
+#### Neovim
+
+From source
+
+```bash
+sudo apt-get install ninja-build gettext cmake curl build-essential
+git clone https://github.com/neovim/neovim
+cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+cd .. && rm -rf neovim
+cd ~/.config && mkdir nvim
+cd nvim && touch init.lua
+```
+
 #### Git
 
 Git with GPG commit verification.

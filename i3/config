@@ -178,3 +178,6 @@ exec --no-startup-id xrandr --output eDP-1 --brightness 0.7
 
 # Bluethoot autoconnect
 exec bluetoothctl connect # [MAC_ADDRESS]
+
+# Caps Lock to escape
+exec setxkbmap -option caps:escape
