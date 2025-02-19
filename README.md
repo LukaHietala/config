@@ -80,6 +80,36 @@ EOF
 
 #### Docker
 
+#### Cargo
+
+```bash
+curl https://sh.rustup.rs -sSf | sh
+```
+
+#### Alacritty
+
+```bash
+# install deps and clone the repo
+sudo apt install cmake g++ pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
+git clone https://github.com/alacritty/alacritty.git
+cd alacritty
+
+# build and install
+rustup override set stable
+rustup update stable
+cargo build --release
+
+# install terminfo
+sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+infocmp alacritty
+
+# copy binary to PATH and desktop file
+sudo cp target/release/alacritty /usr/local/bin
+sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+sudo desktop-file-install extra/linux/Alacritty.desktop
+sudo update-desktop-database
+```
+
 #### Neovim
 
 From source
