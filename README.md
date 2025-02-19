@@ -91,6 +91,13 @@ cd ~/.config && mkdir nvim
 cd nvim && touch init.lua
 ```
 
+#### Ripgrep (rg)
+
+```bash
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb
+sudo dpkg -i ripgrep_14.1.0-1_amd64.deb
+```
+
 #### Git
 
 Git with GPG commit verification.
