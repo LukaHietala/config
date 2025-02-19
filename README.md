@@ -136,6 +136,17 @@ cd ~/.config && mkdir nvim
 cd nvim && touch init.lua
 ```
 
+LuaRocks
+
+```bash
+sudo apt install build-essential libreadline-dev unzip
+curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
+tar -zxf lua-5.3.5.tar.gz
+cd lua-5.3.5
+make linux test
+sudo make install
+```
+
 #### Ripgrep (rg)
 
 ```bash
