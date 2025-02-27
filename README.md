@@ -1,12 +1,5 @@
 All config files and notes for setting up a new machine. Scripts are for debian-based systems and might need tweaks on other distros. Use at your own risk. Config files are as directories in this repo. Scripts are in this README.
 
-I like to keep all bin files in `~/.local/bin` and config files in `~/.config`. So I'll be using mainly these paths in the scripts. Add the following to your `.bashrc` to add the bin directory to the PATH.
-
-```bash
-echo 'export PATH=~/.local/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
-```
-
 - [Go](#go)
 - [Fnm for Node.js](#fnm-for-nodejs)
 - [Docker](#docker)
@@ -18,7 +11,6 @@ source ~/.bashrc
 - [Git](#git)
 - [Bun](#bun)
 - [i3](#i3)
-- [Bash](#bash)
 - [Useful scripts and aliases](#useful-scripts-and-aliases)
 - [LSP Servers](#lsp-servers)
   - [lua_ls](#lua)
@@ -60,9 +52,6 @@ tar -xf "${FILE}"
 
 sudo chown -R root:root ./go
 sudo mv -v go /usr/local
-
-echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.bashrc
-source ~/.bashrc
 ```
 
 #### Fnm for Node.js
@@ -78,16 +67,6 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "$(fnm env)"
 fi
-
-cat << 'EOF' >> ~/.bashrc
-
-# fnm
-FNM_PATH="${HOME}/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env)"
-fi
-EOF
 ```
 
 #### Docker
@@ -160,8 +139,6 @@ sudo dpkg -i ripgrep_14.1.0-1_amd64.deb
 # create a dir for the binary in ~/.local/bin if it doesn't exist
 mkdir -p ~/.local/bin
 # add the binary to the PATH
-echo 'export PATH=~/.local/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
 sudo apt-get install fd-find
 ln -s $(which fdfind) ~/.local/bin/fd
 ```
@@ -197,11 +174,6 @@ git config --global gpg.program gpg
 # Enable signing by default
 git config --global commit.gpgsign true
 git config --global tag.gpgSign true
-
-# Add gpg tty to bashrc
-if [ -f ~/.bashrc ]; then
-    echo -e '\nexport GPG_TTY=$(tty)' >> ~/.bashrc
-fi
 ```
 
 #### Bun
@@ -211,8 +183,6 @@ curl -fsSL https://bun.sh/install | bash
 ```
 
 #### i3
-
-#### Bash
 
 #### Useful scripts and aliases
 
