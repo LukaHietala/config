@@ -11,6 +11,7 @@ All config files and notes for setting up a new machine. Scripts are for debian-
 - [Git](#git)
 - [Bun](#bun)
 - [i3](#i3)
+- [SDL3](#sdl-3)
 - [Useful scripts and aliases](#useful-scripts-and-aliases)
 - [LSP Servers](#lsp-servers)
   - [lua_ls](#lua)
@@ -183,6 +184,16 @@ curl -fsSL https://bun.sh/install | bash
 ```
 
 #### i3
+
+#### SDL 3
+
+```bash
+git clone https://github.com/libsdl-org/SDL.git -b release-3.2.x
+cd SDL
+cmake -S . -B build
+cmake --build build
+sudo cmake --install build --prefix /usr/local
+```
 
 #### Useful scripts and aliases
 
