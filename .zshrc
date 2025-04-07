@@ -1,51 +1,47 @@
-export ZSH="$HOME/.oh-my-zsh"
+# Basic prompt
+PROMPT='%n@%m %~ %# '
 
-ZSH_THEME="robbyrussell"
+# Unlimited history at cache
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE="$HOME/.cache/zsh/history"
 
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+# Extra history improvements
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
 
-zstyle ':omz:update' frequency 13
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)	
 
-plugins=(git fnm)
+# Movements
 
-source $ZSH/oh-my-zsh.sh
+# Go reverse on lists
+bindkey -M menuselect '^[[Z' reverse-menu-complete 
+# Move word by word
+bindkey "^[[1;5C" forward-word  
+bindkey "^[[1;5D" backward-word
 
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+# Navigation
+setopt AUTO_CD
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
-# Paths
+# Other aliases
+alias clip='xclip -selection clipboard'
 
-# Bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH=$BUN_INSTALL/bin:$PATH
+# Dmenu history
+function dmenu_history() {
+  local selected
+  selected=$(fc -l -500 | tac |dmenu -l 20 -p "History:" | sed 's/^[[:space:]]*[0-9]\+[[:space:]]*//')
+  if [[ -n "$selected" ]]; then
+    print -s "$selected"
+    eval "$selected"
+  fi
+}
 
-# GPG
-export GPG_TTY=$(tty)
-
-# Fnm
-FNM_PATH="${HOME}/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env)"
-fi
-
-# Cargo
-export PATH=~/.local/bin:$PATH
-. "$HOME/.cargo/env"
-
-# Go
-export PATH=$PATH:/usr/local/go/bin
-
-# Aliases
-
-# Brightness
-alias br='xrandr --output eDP-1 --brightness'
-
-# Copy/paste on commands
-alias cs='xclip -selection clipboard'
-alias vs='xclip -o -selection clipboard"'
+alias dmhist=dmenu_history
