@@ -48,4 +48,6 @@ function dmenu_history() {
 alias dmhist=dmenu_history
 
 # Exports
+export GPG_TTY=$(tty)
 export SUDO_ASKPASS="/usr/bin/dmenu-askpass"
+
