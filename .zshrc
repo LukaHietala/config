@@ -1,3 +1,4 @@
+# chsh -s $(which zsh) - Make zsh the default shell for your user
 # Basic prompt
 PROMPT='%n@%m %~ %# '
 
@@ -45,3 +46,6 @@ function dmenu_history() {
 }
 
 alias dmhist=dmenu_history
+
+# Exports
+export SUDO_ASKPASS="/usr/bin/dmenu-askpass"
